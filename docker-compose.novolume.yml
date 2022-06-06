@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  valhalla:
+    image: gisops/valhalla:3.0.9
+    ports:
+      - "8002:8002"
+    environment:
+      - tile_urls=https://download.geofabrik.de/asia/indonesia/java-latest.osm.pbf
+      - min_x=106.4758
+      - min_y=-6.4735
+      - max_x=107.1685
+      - max_y=-5.9192
+      - use_tiles_ignore_pbf=True
+      - force_rebuild=False
+      - force_rebuild_elevation=False
+      - build_elevation=True
+      - build_admins=True
+      - build_time_zones=True
