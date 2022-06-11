@@ -2,15 +2,41 @@
 
 [Using gisops valhalla docker image](https://github.com/gis-ops/docker-valhalla), a flexible blank state valhalla engine container. Use `docker-compose.yml` to build the valhalla image presetted to Jakarta (you need to change some environments parameter in order to cater to your own needs), `docker-compose.novolume.yml` is the version where we don't need to mount a volume to the container at the cost of flexibility (you need to download each map tile after setting up the container)
 
-## Details
+## Summary
 
-Using image 3.0.9 tag from https://hub.docker.com. pull the image with `docker pull` `gisops/valhalla:3.0.9` or `gisops/valhalla:latest`.
+This is repository contains `docker-compose.yml` files for building valhalla from gisops with preset environment to run a full fledge routing engine server with container, with some modifications (which involves the removal of mounted volume but in turn cost the flexibility of the container), to make a valhalla routing engine for jakarta area.
 
-## Environemnt Variables
+## Reference
+
+[Valhalla](https://github.com/valhalla/valhalla) is an open source routing engine, which as the name implies is a routing engine server, a simple usage need only to involve two pinpoints with their respective `latitude, longitude` coordinates which will then be sent to the server with http requests and then valhalla will do the routing for you, we only need to set up some configurations and minor modification in the configs to cater to our preference.
+
+Building [from source](https://github.com/valhalla/valhalla) is also possible, but for portability purpose we decided to use pre-set image build by **gisops** located [here](https://github.com/gis-ops/docker-valhalla), this repository is using image 3.0.9 tag from https://hub.docker.com. pull the image with `docker pull` `gisops/valhalla:3.0.9` or `gisops/valhalla:latest`.
+
+## Structure
+
+There are no structure requirements in this repository.
+
+## Usage
+
+run one of the two `docker-compose.yml`, but configure the environment variables first before using, to cater valhalla to a basic working routing engine catered to a certain map.
+
+to start
+
+```bash
+docker-compose up
+```
+
+if finished using
+
+```bash
+docker-compose down
+```
+
+### Environemnt Variables
 
 Refer to [gisops valhalla repository](https://github.com/gis-ops/docker-valhalla)
 
-## Usage
+### Spinned up container simple usage
 
 ```bash
 curl http://35.187.197.248:8002/route --data '{"locations":[{"lat":-6.189626,"l
